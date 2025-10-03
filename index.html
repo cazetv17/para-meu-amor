@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cássio & Ana K - Nossa História de Amor</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <header id="header-particles" role="banner">
+        <div class="header-content animate-on-scroll">
+            <h1>Cássio & Ana K</h1>
+            <p class="subtitle">Uma história escrita nas estrelas ✨</p>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+    
+    <section class="cronometro-container card animate-on-scroll" aria-labelledby="tempo-juntos-titulo">
+        <h2 id="tempo-juntos-titulo">Juntos Há</h2>
+        <div id="cronometro" role="timer">Calculando...</div>
+        <p class="data-inicio">Desde <time datetime="2025-09-07">07 de Setembro de 2025</time></p>
+    </section>
+
+    <section class="historia-container card animate-on-scroll">
+        <h2>Para a Minha Princesa</h2>
+        <div class="texto-romantico">
+            <p>
+                Minha princessa, cada dia ao seu lado é um capítulo novo e inesquecível do nosso livro. 
+                Você chegou na minha vida como a estrela mais brilhante, transformando a rotina em uma aventura mágica. 
+                Olhar para o tempo que construímos juntos me enche de gratidão e certeza: o amor da nossa vida não é apenas um sonho, é a nossa realidade. 
+                Eu te amo infinitamente!
+            </p>
+           <p class="assinatura">
+                <a href="https://www.instagram.com/cassio_vieira01/" target="_blank" class="instagram-link">
+                    <i class="fab fa-instagram"></i> @Seu namorado
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <section id="slideshow-container" class="fotos-container card animate-on-scroll" aria-label="Carrossel de Fotos do Casal">
+        <figure aria-live="polite">
+            <img src="jj.jpeg" alt="Cássio e Ana K juntos, foto 1" class="foto-casal" data-index="0" fetchpriority="high">
+            <img src="kj.jpeg" alt="Cássio e Ana K, foto 2" class="foto-casal" data-index="1" loading="lazy">
+            <img src="lk.jpeg" alt="Cássio e Ana K, foto 3" class="foto-casal" data-index="2" loading="lazy">
+            <img src="WhatsApp Image 2025-10-02 at 23.22.01.jpeg" alt="Cássio e Ana K, foto 4" class="foto-casal" data-index="3" loading="lazy">
+            <img src="WhatsApp Image 2025-10-02 at 23.22.02.jpeg" alt="Cássio e Ana K, foto 5" data-index="4" loading="lazy">
+            <img src="WhatsApp Image 2025-10-02 at 23.22.03.jpeg" alt="Cássio e Ana K, foto 6" class="foto-casal" data-index="5" loading="lazy">
+        </figure>
+        
+        <div class="overlay-info"><i class="fas fa-search-plus"></i> Toque na foto para ampliar</div>
+        <button id="botao-anterior" class="botao-navegacao" aria-label="Foto Anterior" type="button">&#10094;</button>
+        <button id="botao-proximo" class="botao-navegacao" aria-label="Próxima Foto" type="button">&#10095;</button>
+    </section>
+
+    <section class="momentos-container card animate-on-scroll">
+        <h2>Momentos Inesquecíveis</h2>
+        <div class="momentos-grid">
+            
+            <article class="momento-card">
+                <img src="jj.jpeg" alt="Foto do primeiro momento juntos" loading="lazy">
+                <div class="momento-legenda">Início de tudo</div>
+            </article>
+            
+            <article class="momento-card">
+                <video src="WhatsApp Video 2025-10-03 at 00.13.40 (1).mp4" class="video-momento" controls preload="metadata" playsinline poster="capa_do_video.jpg">
+                    Seu navegador não suporta a tag de vídeo.
+                </video>
+                <div class="momento-legenda">Dia Do Pedido 💍</div>
+            </article>
+            
+            <article class="momento-card">
+                <img src="lk.jpeg" alt="Foto do aniversário especial do casal" loading="lazy">
+                <div class="momento-legenda">Aniversário especial</div>
+            </article>
+        </div>
+    </section>
+</main>
+
+    <footer role="contentinfo">
+        <audio id="musica" src="01 Aliança (1).mp3" loop></audio>
+        <div class="player-container" aria-label="Player de Música">
+            <button id="play-button" class="botao-musica" aria-label="Reproduzir/Pausar Música" type="button">
+                <i class="fas fa-play" id="play-icon"></i>
+            </button>
+            <div class="progress-bar-container" role="slider" aria-label="Progresso da Música" aria-valuemin="0" aria-valuemax="100">
+                <div id="progress-bar" class="progress-bar" role="presentation"></div>
+            </div>
+        </div>
+        <p class="footer-text">Feito com amor para Ana Karolyne</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Galeria de fotos ampliada">
+        <button class="lightbox-close" aria-label="Fechar galeria" type="button">&times;</button>
+        <img class="lightbox-content" id="lightbox-img" alt="Imagem ampliada">
+        <button class="lightbox-prev" aria-label="Imagem Anterior" type="button">&#10094;</button>
+        <button class="lightbox-next" aria-label="Próxima Imagem" type="button">&#10095;</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>

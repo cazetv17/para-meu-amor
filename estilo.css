@@ -1,0 +1,497 @@
+/* ---------------------------------------------------- */
+/* 0. VARIÁVEIS CSS (Cores Escuras e Neutras)           */
+/* ---------------------------------------------------- */
+:root {
+    /* Cores Escuras e Neutras */
+    --cor-principal: #292B2F;   /* Cinza Carvão Escuro (Header/Footer/Destaque Escuro) */
+    --cor-secundaria: #E5E5E5;  /* Cinza Claro Suave (Fundo Principal da Página) */
+    --cor-texto: #1A1A1A;       /* Quase Preto (Para Textos e Títulos) */
+    --cor-branco: #FFFFFF;      /* Branco Puro (Fundo de Cards/Caixas) */
+    --cor-destaque: #B5A795;    /* Bege/Dourado Suave (Para Botões e Barras) */
+
+    /* Sombras e Fontes */
+    --sombra-card: 0 4px 15px rgba(0, 0, 0, 0.15);
+    --sombra-hover: 0 10px 30px rgba(0, 0, 0, 0.25);
+    --fonte-titulo: 'Playfair Display', serif; 
+    --fonte-corpo: 'Montserrat', sans-serif;
+}
+
+/* ---------------------------------------------------- */
+/* 1. RESET E ESTILOS GERAIS                            */
+/* ---------------------------------------------------- */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: var(--fonte-corpo); 
+    background-color: var(--cor-secundaria); 
+    color: var(--cor-texto);
+    line-height: 1.6; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh;
+}
+
+/* Link para Pular Conteúdo (Acessibilidade) */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--cor-destaque);
+    color: var(--cor-texto);
+    padding: 8px;
+    z-index: 9999;
+    transition: top 0.3s;
+}
+.skip-link:focus {
+    top: 0;
+}
+
+/* Barra de Rolagem Customizada */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--cor-secundaria); }
+::-webkit-scrollbar-thumb { background: var(--cor-destaque); border-radius: 5px; }
+
+
+/* ---------------------------------------------------- */
+/* 2. HEADER E ANIMAÇÕES                                */
+/* ---------------------------------------------------- */
+header {
+    position: relative; 
+    overflow: hidden; 
+    background-color: var(--cor-principal); 
+    color: var(--cor-branco);
+    text-align: center; 
+    padding: 6rem 1rem; 
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+#header-particles { 
+    background-image: linear-gradient(rgba(41, 43, 47, 0.6), rgba(41, 43, 47, 0.6)), url('sua_imagem_de_fundo.jpg'); /* Adicione sua imagem aqui */
+    background-size: cover;
+    background-position: center;
+}
+#particles-js { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    top: 0; 
+    left: 0; 
+    z-index: 1; 
+}
+.header-content { 
+    position: relative; 
+    z-index: 2; 
+}
+header h1 { 
+    font-family: var(--fonte-titulo); 
+    font-size: 3.5rem; 
+}
+header .subtitle { 
+    font-size: 1.2rem; 
+    font-style: italic; 
+    color: #CCC; /* Cinza claro suave */
+}
+
+/* Animações de Scroll */
+.animate-on-scroll {
+    opacity: 0; 
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animate-on-scroll.visible { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+/* ---------------------------------------------------- */
+/* 3. LAYOUT PRINCIPAL E CARDS                          */
+/* ---------------------------------------------------- */
+main {
+    flex-grow: 1; 
+    padding: 2rem 1rem; 
+    max-width: 900px; /* Aumenta a largura para telas maiores */
+    width: 100%;
+    margin: -4rem auto 0 auto; /* Traz o conteúdo para cima do header */
+    z-index: 10;
+}
+
+.card {
+    background-color: var(--cor-branco); 
+    border-radius: 15px; 
+    box-shadow: var(--sombra-card);
+    padding: 2rem; 
+    margin-bottom: 2rem; 
+    text-align: center;
+}
+.card h2 {
+    font-family: var(--fonte-titulo); 
+    color: var(--cor-texto); /* Títulos escuros */
+    margin-bottom: 1.5rem; 
+    font-size: 2rem;
+}
+
+/* Cronômetro */
+#cronometro {
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    padding: 1rem;
+    background-color: #F8F8F8; /* Fundo ligeiramente off-white */
+    border-radius: 10px;
+}
+.data-inicio { 
+    margin-top: 1rem; 
+    color: #666; 
+}
+
+/* ---------------------------------------------------- */
+/* 4. SLIDESHOW E NAVEGAÇÃO (Mobile/Desktop)            */
+/* ---------------------------------------------------- */
+.fotos-container { 
+    position: relative; 
+    overflow: hidden; 
+    height: 500px; 
+    padding: 0; 
+}
+/* Garante que o container <figure> cubra tudo */
+.fotos-container figure {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.foto-casal {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    opacity: 0; 
+    transition: opacity 0.8s ease-in-out; 
+    border-radius: 15px; 
+    cursor: pointer;
+}
+.foto-casal.visivel { 
+    opacity: 1; 
+}
+
+/* Overlay de Dica de Clique */
+.overlay-info {
+    position: absolute; 
+    bottom: 15px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    background-color: rgba(0,0,0,0.6); /* Fundo semi-transparente mais escuro */
+    color: var(--cor-branco); 
+    padding: 8px 18px;
+    border-radius: 20px; 
+    font-size: 0.9rem; 
+    z-index: 25; 
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.fotos-container:hover .overlay-info { 
+    opacity: 1; 
+}
+
+/* Botões de Navegação (Agora são <button>) */
+.botao-navegacao {
+    cursor: pointer; 
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%);
+    padding: 1rem; 
+    color: var(--cor-branco); 
+    font-size: 1.5rem; 
+    background-color: rgba(0,0,0,0.4);
+    user-select: none; 
+    transition: background-color 0.3s ease; 
+    z-index: 20;
+    border: none; /* Remove a borda padrão do botão */
+}
+.botao-navegacao:hover { 
+    background-color: rgba(0,0,0,0.7); 
+}
+#botao-anterior { 
+    left: 0; 
+    border-radius: 0 10px 10px 0; 
+}
+#botao-proximo { 
+    right: 0; 
+    border-radius: 10px 0 0 10px; 
+}
+
+/* ---------------------------------------------------- */
+/* 5. SEÇÃO MOMENTOS (Layout Quadrado e Visível)        */
+/* ---------------------------------------------------- */
+.momentos-grid { 
+    display: grid; 
+    /* Layout responsivo com bom tamanho mínimo para mobile */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 25px; 
+    padding: 15px 0;
+}
+
+.momento-card {
+    background-color: var(--cor-branco); 
+    border-radius: 10px; 
+    box-shadow: var(--sombra-card);
+    overflow: hidden; 
+    aspect-ratio: 1 / 1; /* FORÇA O FORMATO QUADRADO (Mobile-friendly) */
+    
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s ease;
+}
+
+.momento-card:hover {
+    transform: scale(1.03); 
+    box-shadow: var(--sombra-hover);
+}
+
+.momento-card > img,
+.momento-card > video {
+    width: 100%;
+    flex-grow: 1; /* Ocupa o espaço disponível */
+    object-fit: cover; 
+    display: block;
+    transition: transform 0.4s ease;
+}
+.momento-card:hover > img,
+.momento-card:hover > video {
+    transform: scale(1.08); /* Efeito de zoom mais pronunciado */
+}
+
+.momento-legenda {
+    position: absolute; 
+    bottom: 0;
+    width: 100%;
+    padding: 12px 10px;
+    
+    background-color: rgba(0, 0, 0, 0.75); /* Fundo escuro para maior legibilidade no mobile */
+    color: var(--cor-branco);
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.95em;
+    z-index: 10;
+}
+
+/* ---------------------------------------------------- */
+/* 6. FOOTER E PLAYER DE MÚSICA                         */
+/* ---------------------------------------------------- */
+footer { 
+    text-align: center; 
+    padding: 2rem 1rem; 
+    background-color: var(--cor-principal); 
+    color: var(--cor-branco); 
+    margin-top: auto; /* Garante que o footer fique no rodapé da página */
+}
+.player-container { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 1rem; 
+    max-width: 300px; 
+    margin: 0 auto 1rem auto; 
+}
+
+.botao-musica {
+    background-color: var(--cor-destaque); 
+    color: var(--cor-principal); /* Ícone escuro no botão claro */
+    border: none; 
+    width: 50px; 
+    height: 50px;
+    font-size: 1.2rem; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra no botão para mobile */
+}
+.botao-musica:hover { 
+    transform: scale(1.1);
+    background-color: #A39684;
+}
+
+.progress-bar-container { 
+    flex-grow: 1; 
+    background-color: rgba(255,255,255,0.2); 
+    height: 8px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+.progress-bar { 
+    background-color: var(--cor-destaque); 
+    width: 0%; 
+    height: 100%; 
+    border-radius: 5px; 
+}
+.footer-text { 
+    margin-top: 1rem; 
+    opacity: 0.8; 
+}
+
+/* ---------------------------------------------------- */
+/* 7. GALERIA LIGHTBOX (Comportamento Mobile)           */
+/* ---------------------------------------------------- */
+.lightbox {
+    position: fixed; 
+    z-index: 1000; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.95); /* Fundo mais escuro para foco */
+    display: none; 
+    align-items: center; 
+    justify-content: center;
+    padding: 10px; /* Padding para garantir que a imagem não toque as bordas */
+}
+.lightbox-content {
+    max-width: 100%; /* Ajusta para 100% da tela mobile */
+    max-height: 100%; 
+    object-fit: contain; 
+    animation: zoomIn 0.5s;
+    border-radius: 5px;
+}
+
+.lightbox-close {
+    position: absolute; 
+    top: 15px; 
+    right: 15px; 
+    color: var(--cor-branco); 
+    font-size: 3rem; /* Aumenta o tamanho para fácil toque em mobile */
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: 0.3s;
+    background: none;
+    border: none;
+    line-height: 1; /* Ajusta a altura da linha */
+}
+.lightbox-close:hover { 
+    color: #bbb; 
+}
+
+.lightbox-prev, .lightbox-next {
+    cursor: pointer; 
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%);
+    color: var(--cor-branco); 
+    font-size: 2.5rem; /* Aumenta o tamanho para toque */
+    user-select: none; 
+    padding: 12px;
+    transition: 0.3s;
+    background-color: rgba(0,0,0,0.1);
+    border: none;
+    width: 50px; /* Garante área de toque */
+    height: 50px;
+    border-radius: 50%;
+}
+.lightbox-prev:hover, .lightbox-next:hover { 
+    background-color: rgba(255,255,255,0.2); 
+}
+.lightbox-prev { left: 10px; }
+.lightbox-next { right: 10px; }
+@keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ---------------------------------------------------- */
+/* 8. RESPONSIVIDADE (Adaptação para Celulares)         */
+/* ---------------------------------------------------- */
+@media (max-width: 600px) {
+    
+    header { 
+        padding: 3rem 1rem; /* Reduz o padding do header */
+    }
+    header h1 { 
+        font-size: 2rem; /* Título menor */
+    }
+    header .subtitle {
+        font-size: 1rem;
+    }
+
+    main { 
+        padding: 1rem; /* Reduz o padding lateral do conteúdo */
+        margin-top: -3rem; /* Traz o conteúdo ainda mais para cima */
+    }
+    
+    .card { 
+        padding: 1.2rem; /* Reduz o padding interno dos cards */
+        border-radius: 10px;
+    }
+    .card h2 {
+        font-size: 1.5rem; /* Títulos menores */
+        margin-bottom: 1rem;
+    }
+
+    /* Slideshow */
+    .fotos-container { 
+        height: 350px; /* Altura menor para a galeria em mobile */
+    }
+    .botao-navegacao {
+        font-size: 1.2rem; 
+        padding: 0.8rem;
+    }
+    .overlay-info {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+
+    /* Momentos (Grid) */
+    .momentos-grid { 
+        gap: 15px; /* Reduz o espaço entre os cards */
+        /* O aspect-ratio garante que o layout quadrado seja mantido */
+    }
+
+    /* Lightbox (Fecha no topo da tela) */
+    .lightbox-close {
+        top: 0px; 
+        right: 0px;
+        font-size: 2.5rem;
+        background-color: rgba(0,0,0,0.5);
+        padding: 0 10px;
+        border-bottom-left-radius: 5px;
+    }
+    .lightbox-prev, .lightbox-next {
+        font-size: 2rem;
+        padding: 10px;
+    }
+}
+/* ---------------------------------------------------- */
+/* ESTILOS ESPECÍFICOS DA ASSINATURA ROMÂNTICA          */
+/* ---------------------------------------------------- */
+
+.assinatura {
+    /* Alinhamento: move a assinatura para a direita */
+    text-align: left; 
+    
+    /* Espaçamento: afasta a assinatura do texto principal */
+    margin-top: 1.5rem; 
+    
+    /* Fonte: garante a cor de destaque e um bom peso */
+    font-size: 1.15em; /* Ligeiramente maior que o texto padrão */
+    font-weight: 700; /* Negrito para destaque */
+    
+    /* Cor: utiliza a cor de destaque (Bege/Dourado) */
+    color: var(--cor-destaque); 
+    
+    /* Remove qualquer estilo itálico herdado do container */
+    font-style: normal; 
+    
+    /* Adiciona uma sombra sutil para um efeito elegante (opcional) */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Opcional: Garante que o texto seja legível em telas muito pequenas */
+@media (max-width: 600px) {
+    .assinatura {
+        font-size: 1.1em;
+        margin-top: 1rem;
+    }
+}
